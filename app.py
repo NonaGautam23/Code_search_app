@@ -99,11 +99,11 @@ def main():
         placeholder="e.g., How to reverse a string in Python?"
     )
     
-    if st.button("Search") and question:
+    if st.button("Search", key="search_button_1") and question:
         with st.spinner("🔍 Searching for answers..."):
             results = search_coding_answers(tavily_client, question)
             display_results(results)
-    elif st.button("Search") and not question:
+    elif st.button("Search", key="search_button_2") and not question:
         st.warning("Please enter a question first.")
 
 if __name__ == "__main__":

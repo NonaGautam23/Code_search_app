@@ -26,7 +26,6 @@ def search_coding_answers(question: str) -> Optional[Dict]:
     if not tavily_client:
         return None
     
-    # Enhanced search query focusing on coding sites
     search_query = (
         f"{question} site:geeksforgeeks.org OR site:stackoverflow.com OR "
         "site:w3schools.com OR site:codegrepper.com OR site:realpython.com"
@@ -62,12 +61,11 @@ def extract_code_blocks(content: str) -> List[str]:
     code_blocks = []
     
     for match in matches:
-        # Join all non-empty groups from the match
         block = '\n'.join([m for m in match if m.strip()])
         if block:
             # Clean up the code block
-            block = re.sub(r'^\s*\n', '', block)  # Remove leading empty lines
-            block = re.sub(r'\s+$', '', block)    # Remove trailing whitespace
+            block = re.sub(r'^\s*\n', '', block)  
+            block = re.sub(r'\s+$', '', block)    
             code_blocks.append(block)
     
     return code_blocks
@@ -131,7 +129,6 @@ def main():
         placeholder="e.g., How to merge two dictionaries in Python?"
     )
     
-    # Single search button with improved functionality
     if st.button("🔍 Search for Answers", type="primary"):
         if not question.strip():
             st.warning("Please enter a question first.")
